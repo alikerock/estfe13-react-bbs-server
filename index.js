@@ -19,8 +19,9 @@ const storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   filename: function (req, file, cb) {
-    const uniquePrefix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniquePrefix + "-" + file.originalname);
+    const orinalExt = file.originalname.split(".")[1];
+    const uniquePrefix = Date.now() + "-" + Math.round(Math.random() * 1000);
+    cb(null, uniquePrefix + "-" + file.fieldname + "." + orinalExt);
   },
 });
 
